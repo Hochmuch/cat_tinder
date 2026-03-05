@@ -1,18 +1,5 @@
 # cat_tinder
 
-Tinder for kitties 🐱
+Tinder for cars!!!
+<img width="332" height="707" alt="image" src="https://github.com/user-attachments/assets/bd76afb4-903a-4ab4-908c-8a20b32d47a7" />
 
-Приложение на Flutter, где можно лайкать/дизлайкать случайных котиков, смотреть детали по породам и открывать список всех пород из TheCatAPI.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
