@@ -1,6 +1,8 @@
 # cat_tinder
 
-Tinder for cars!!!
+Tinder for kitties 🐱
+
+Приложение на Flutter, где можно лайкать/дизлайкать случайных котиков, смотреть детали по породам и открывать список всех пород из TheCatAPI.
 
 ## Getting Started
 
