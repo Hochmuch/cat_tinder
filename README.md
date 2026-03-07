@@ -1,4 +1,6 @@
 # CAT TINDER
+APK: https://disk.360.yandex.ru/d/9b3oqWfCMLtCYQ
+
 
 ### Онбординг
 ![ezgif-8f36a3555aae36aa](https://github.com/user-attachments/assets/48b33ff1-f0fb-4cbc-936c-2fc6d1120548)
