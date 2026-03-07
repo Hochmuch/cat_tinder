@@ -29,6 +29,10 @@ class AuthLocalDataSource {
     return StoredCredentials(email: email, password: password);
   }
 
+  Future<String?> readRegisteredEmail() {
+    return _store.read(key: _emailKey);
+  }
+
   Future<void> setLoggedIn(bool value) {
     return _store.write(key: _isLoggedInKey, value: value ? '1' : '0');
   }

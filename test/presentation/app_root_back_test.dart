@@ -4,9 +4,11 @@ import 'package:cat_tinder/domain/entities/cat_card.dart';
 import 'package:cat_tinder/domain/repositories/auth_repository.dart';
 import 'package:cat_tinder/domain/repositories/cat_repository.dart';
 import 'package:cat_tinder/domain/repositories/onboarding_repository.dart';
+import 'package:cat_tinder/domain/services/analytics_service.dart';
 import 'package:cat_tinder/domain/usecases/complete_onboarding_use_case.dart';
 import 'package:cat_tinder/domain/usecases/get_startup_destination_use_case.dart';
 import 'package:cat_tinder/domain/usecases/get_breeds_use_case.dart';
+import 'package:cat_tinder/domain/usecases/get_registered_email_use_case.dart';
 import 'package:cat_tinder/domain/usecases/get_random_cat_use_case.dart';
 import 'package:cat_tinder/domain/usecases/login_use_case.dart';
 import 'package:cat_tinder/domain/usecases/logout_use_case.dart';
@@ -23,6 +25,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 class _FakeAuthRepository implements AuthRepository {
   @override
+  Future<String?> getRegisteredEmail() async => 'cat@tinder.dev';
+
+  @override
   Future<bool> isLoggedIn() async => false;
 
   @override
@@ -36,6 +41,11 @@ class _FakeAuthRepository implements AuthRepository {
     required String email,
     required String password,
   }) async {}
+}
+
+class _FakeAnalyticsService implements AnalyticsService {
+  @override
+  Future<void> logEvent(String name) async {}
 }
 
 class _FakeOnboardingRepository implements OnboardingRepository {
@@ -104,6 +114,8 @@ AppController _createController() {
       authRepository,
     ),
     completeOnboarding: CompleteOnboardingUseCase(onboardingRepository),
+    getRegisteredEmail: GetRegisteredEmailUseCase(authRepository),
+    analytics: _FakeAnalyticsService(),
     login: LoginUseCase(authRepository),
     signUp: SignUpUseCase(authRepository),
     logout: LogoutUseCase(authRepository),

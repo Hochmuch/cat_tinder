@@ -33,6 +33,7 @@ class AppRoot extends StatelessWidget {
               canPop: false,
               child: AuthScreen(
                 mode: scope.appController.authMode,
+                initialEmail: scope.appController.rememberedEmail,
                 onModeChanged: scope.appController.setAuthMode,
                 onLogin: (email, password) =>
                     scope.appController.login(email: email, password: password),

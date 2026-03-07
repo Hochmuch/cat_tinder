@@ -32,4 +32,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<bool> isLoggedIn() => _localDataSource.isLoggedIn();
+
+  @override
+  Future<String?> getRegisteredEmail() =>
+      _localDataSource.readRegisteredEmail();
 }

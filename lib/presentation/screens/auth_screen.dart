@@ -7,12 +7,14 @@ class AuthScreen extends StatefulWidget {
   const AuthScreen({
     super.key,
     required this.mode,
+    this.initialEmail,
     required this.onModeChanged,
     required this.onLogin,
     required this.onSignUp,
   });
 
   final AuthMode mode;
+  final String? initialEmail;
   final ValueChanged<AuthMode> onModeChanged;
   final Future<String?> Function(String email, String password) onLogin;
   final Future<String?> Function(String email, String password) onSignUp;
@@ -28,6 +30,28 @@ class _AuthScreenState extends State<AuthScreen> {
 
   bool _isSubmitting = false;
   String? _errorText;
+
+  @override
+  void initState() {
+    super.initState();
+    final email = widget.initialEmail;
+    if (email != null && email.isNotEmpty) {
+      _emailController.text = email;
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant AuthScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (_emailController.text.isNotEmpty) {
+      return;
+    }
+
+    final email = widget.initialEmail;
+    if (email != null && email.isNotEmpty) {
+      _emailController.text = email;
+    }
+  }
 
   @override
   void dispose() {

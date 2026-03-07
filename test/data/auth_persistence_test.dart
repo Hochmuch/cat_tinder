@@ -36,5 +36,6 @@ void main() {
     final repository2 = AuthRepositoryImpl(localDataSource2);
 
     expect(await repository2.isLoggedIn(), isTrue);
+    expect(await repository2.getRegisteredEmail(), 'cat@tinder.dev');
   });
 }

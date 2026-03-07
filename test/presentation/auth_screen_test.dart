@@ -4,6 +4,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  testWidgets('prefills email from saved registration data', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: AuthScreen(
+          mode: AuthMode.login,
+          initialEmail: 'cat@tinder.dev',
+          onModeChanged: (_) {},
+          onLogin: (_, __) async => null,
+          onSignUp: (_, __) async => null,
+        ),
+      ),
+    );
+
+    final emailField = tester.widget<TextFormField>(
+      find.byType(TextFormField).at(0),
+    );
+    expect(emailField.controller?.text, 'cat@tinder.dev');
+  });
+
   testWidgets('shows validation error on invalid input', (tester) async {
     await tester.pumpWidget(
       MaterialApp(

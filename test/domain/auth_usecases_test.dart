@@ -10,6 +10,9 @@ class _FakeAuthRepository implements AuthRepository {
   bool loggedIn = false;
 
   @override
+  Future<String?> getRegisteredEmail() async => storedEmail;
+
+  @override
   Future<bool> isLoggedIn() async => loggedIn;
 
   @override
@@ -39,13 +42,13 @@ void main() {
       final repository = _FakeAuthRepository();
       final useCase = SignUpUseCase(repository);
 
-      await useCase(email: 'cat@tinder.dev', password: '123456');
+      await useCase(email: 'cat@gmail.com', password: '123456');
 
-      expect(repository.storedEmail, 'cat@tinder.dev');
+      expect(repository.storedEmail, 'cat@gmail.com');
       expect(repository.loggedIn, true);
     });
 
-    test('login throws for invalid email format', () async {
+    test('login throws exception for invalid email format', () async {
       final repository = _FakeAuthRepository();
       final useCase = LoginUseCase(repository);
 

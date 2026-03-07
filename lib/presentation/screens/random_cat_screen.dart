@@ -59,6 +59,7 @@ class _RandomCatScreenState extends State<RandomCatScreen> {
       animation: widget.controller,
       builder: (context, _) {
         final cat = widget.controller.currentCat;
+        final colorScheme = Theme.of(context).colorScheme;
 
         return Stack(
           children: [
@@ -76,6 +77,7 @@ class _RandomCatScreenState extends State<RandomCatScreen> {
                   : Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
+                        const SizedBox(height: 44),
                         Text(
                           cat.breed.name,
                           textAlign: TextAlign.center,
@@ -164,14 +166,37 @@ class _RandomCatScreenState extends State<RandomCatScreen> {
               top: 16,
               left: 16,
               child: Card(
+                color: colorScheme.surfaceContainerHighest.withValues(
+                  alpha: 0.88,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                  side: BorderSide(
+                    color: colorScheme.outlineVariant.withValues(alpha: 0.7),
+                  ),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 14,
                     vertical: 8,
                   ),
-                  child: Text(
-                    'Лайки: ${widget.controller.likesCounter}',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.favorite_rounded,
+                        size: 18,
+                        color: colorScheme.primary,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Лайки: ${widget.controller.likesCounter}',
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: colorScheme.onSurface,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -186,12 +211,16 @@ class _RandomCatScreenState extends State<RandomCatScreen> {
                     FloatingActionButton(
                       heroTag: 'dislike_btn',
                       onPressed: _dislike,
+                      backgroundColor: colorScheme.surfaceContainerHighest,
+                      foregroundColor: colorScheme.onSurface,
                       child: const Icon(Icons.close),
                     ),
                     const SizedBox(width: 24),
                     FloatingActionButton(
                       heroTag: 'like_btn',
                       onPressed: _like,
+                      backgroundColor: colorScheme.primary,
+                      foregroundColor: colorScheme.onPrimary,
                       child: const Icon(Icons.favorite),
                     ),
                   ],
